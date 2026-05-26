@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build:ios:local": "npx expo prebuild --ios && cd ios && xcodebuild -workspace Meeu.xcworkspace -scheme Meeu -configuration Release -destination 'generic/platform=iOS'",
+    "build:android:local": "npx expo prebuild --android && cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
