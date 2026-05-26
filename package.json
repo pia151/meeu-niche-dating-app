@@ -1,0 +1,14 @@
+{
+  "name": "niche-dating-app",
+  "version": "1.0.0",
+  "description": "小众交友APP - 类似NICO/喜弟的社交匹配平台",
+  "private": true,
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "app": "cd app && npx expo start",
+    "install:all": "cd server && npm install && cd ../app && npm install",
+    "build": "cd server && npm run build"
+  },
+  "keywords": ["dating", "social", "niche", "match"],
+  "license": "MIT"
+}
