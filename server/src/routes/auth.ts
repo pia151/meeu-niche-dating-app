@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'meeu_jwt_secret_key_2024';
+const secretKey: string = process.env.JWT_SECRET || 'meeu_jwt_secret_key_2024';
 
 function hashPassword(password: string): string {
   return bcrypt.hashSync(password, 10);
@@ -19,7 +19,7 @@ function generateVerifyCode(): string {
 }
 
 function generateToken(userId: string): string {
-  return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '30d' });
+  return jwt.sign({ userId }, secretKey, { expiresIn: '30d' });
 }
 
 interface AuthRequest extends Request {
@@ -92,7 +92,7 @@ router.get('/me', (req: AuthRequest, res: Response) => {
     return;
   }
   try {
-    const decoded = jwt.verify(authHeader.split(' ')[1], JWT_SECRET) as { userId: string };
+    const decoded = jwt.verify(authHeader.split(' ')[1], secretKey) as { userId: string };
     const user = db.prepare('SELECT id, phone, nickname, avatar, gender, age, bio, city, tags, created_at FROM users WHERE id=?').get(decoded.userId) as any;
     if (!user) {
       res.status(404).json({ error: '用户不存在' });
