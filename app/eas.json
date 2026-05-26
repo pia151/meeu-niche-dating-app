@@ -1,0 +1,19 @@
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "developmentProvisioning": null
+      }
+    },
+    "production": {
+      "ios": {
+        "developmentProvisioning": null
+      }
+    }
+  },
+  "preview": {
+    "development": true
+  }
+}
